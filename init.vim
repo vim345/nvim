@@ -1,4 +1,4 @@
-call plug#begin('~/github/vim345/neovim/plugged')
+call plug#begin()
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
@@ -10,6 +10,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'FooSoft/vim-argwrap'
 Plug 'blueyed/vim-diminactive'
 Plug 'pangloss/vim-javascript'
+Plug 'w0rp/ale'
 call plug#end()
 "
 " Enable 256 color schema in vimdiff.
@@ -405,3 +406,10 @@ nmap ,te :tabedit <C-R>=getcwd() . "/" . split(getcwd(), "/")[-1] . "/" . substi
 " disable statusline overwriting
 let g:fzf_nvim_statusline = 0
 nmap <C-P> :Files<CR>
+
+
+" Fix files with isort.
+let b:ale_fixers = ['autopep8']
+" Enable quickfix in ALE.
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
