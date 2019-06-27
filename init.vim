@@ -9,6 +9,7 @@ Plug 'fcpg/vim-osc52'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'FooSoft/vim-argwrap'
 Plug 'blueyed/vim-diminactive'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 "
 " Enable 256 color schema in vimdiff.
