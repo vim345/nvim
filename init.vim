@@ -18,6 +18,7 @@ call plug#end()
 set t_Co=256
 
 " Enable relative number
+set number
 set relativenumber
 
 
