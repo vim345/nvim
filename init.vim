@@ -11,6 +11,7 @@ Plug 'FooSoft/vim-argwrap'
 Plug 'blueyed/vim-diminactive'
 Plug 'pangloss/vim-javascript'
 Plug 'w0rp/ale'
+Plug 'derekwyatt/vim-scala'
 call plug#end()
 "
 " Enable 256 color schema in vimdiff.
