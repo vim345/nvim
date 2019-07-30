@@ -51,6 +51,22 @@ set hidden          " Hide buffers when they are abandoned
 set mouse=a         " Enable mouse usage (all modes)
 set ruler           " Add ruler to status bar.
 set tabpagemax=30   " Max number of open tabs.
+"
+"
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+if has("autocmd")
+  filetype plugin indent on
+  set smartindent
+  set tabstop=4
+  set shiftwidth=4
+  set expandtab
+  autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
+  autocmd Filetype css setlocal ts=2 sw=2 sts=0
+  autocmd Filetype scss setlocal ts=2 sw=2 sts=0
+  autocmd Filetype html setlocal ts=2 sw=2 sts=0
+endif
+
 
 
 " Set the width to 80 for Python and 130 for go
@@ -415,3 +431,23 @@ let b:ale_fixers = ['autopep8']
 " Enable quickfix in ALE.
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+
+
+xmap <F7> y:call SendViaOSC52(getreg('"'))<cr>
+
+function! OscCopy()
+  let encodedText=@"
+  let encodedText=substitute(encodedText, '\', '\\\\', "g")
+  let encodedText=substitute(encodedText, "'", "'\\\\''", "g")
+  let executeCmd="echo -n '".encodedText."' | base64 | tr -d '\\n'"
+  let encodedText=system(executeCmd)
+  if $TMUX != ""
+    "tmux
+    let executeCmd='echo -en "\x1bPtmux;\x1b\x1b]52;;'.encodedText.'\x1b\x1b\\\\\x1b\\" > /dev/tty'
+  else
+    let executeCmd='echo -en "\x1b]52;;'.encodedText.'\x1b\\" > /dev/tty'
+  endif
+  call system(executeCmd)
+  redraw!
+endfunction
+command! OscCopy :call OscCopy()
