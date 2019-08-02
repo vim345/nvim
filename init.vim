@@ -63,6 +63,7 @@ if has("autocmd")
   set expandtab
   autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
   autocmd Filetype css setlocal ts=2 sw=2 sts=0
+  autocmd Filetype json setlocal ts=2 sw=2 sts=0
   autocmd Filetype scss setlocal ts=2 sw=2 sts=0
   autocmd Filetype html setlocal ts=2 sw=2 sts=0
 endif
