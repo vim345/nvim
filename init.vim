@@ -412,8 +412,8 @@ nmap ,e :vsplit <C-R>=getcwd() . "/" . split(getcwd(), "/")[-1] . "/" . substitu
 nmap ,te :tabedit <C-R>=getcwd() . "/" . split(getcwd(), "/")[-1] . "/" . substitute(join(split(expand("%:r"), "/")[1:], "/"), test_pattern, "." . expand("%:e"), "")<CR><CR>
 
 
-" Syntastic mappings.
-" nmap <silent> <F3> :SyntasticCheck<CR>
+" Toggle linting enabledness.
+nmap <silent> <F3> :ALEToggle<CR>
 " nmap <silent> <F4> :SyntasticToggleMode<CR>
 
 
@@ -425,6 +425,8 @@ nmap ,te :tabedit <C-R>=getcwd() . "/" . split(getcwd(), "/")[-1] . "/" . substi
 " disable statusline overwriting
 let g:fzf_nvim_statusline = 0
 nmap <C-P> :Files<CR>
+" Only show files that are in the same directory.
+nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
 
 
 " Fix files with isort.
