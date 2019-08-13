@@ -394,6 +394,10 @@ map <leader>n :cnext<CR>
 map <leader>m :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
+" Mappings for diff
+map <leader>d :windo diffthis<CR>
+map <leader>o :windo diffoff<CR>
+
 
 """""""""""""""""""""""""""" End of Go Specific mappings.
 
