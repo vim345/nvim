@@ -12,6 +12,7 @@ Plug 'blueyed/vim-diminactive'
 Plug 'pangloss/vim-javascript'
 Plug 'w0rp/ale'
 Plug 'derekwyatt/vim-scala'
+Plug 'psf/black'
 call plug#end()
 "
 " Enable 256 color schema in vimdiff.
@@ -66,6 +67,7 @@ if has("autocmd")
   autocmd Filetype json setlocal ts=2 sw=2 sts=0
   autocmd Filetype scss setlocal ts=2 sw=2 sts=0
   autocmd Filetype html setlocal ts=2 sw=2 sts=0
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
 
@@ -326,6 +328,10 @@ map <silent><C-s-h> :tabprevious<CR>
 map <leader>e :%s/\s\+$//<CR>
 
 
+" Erasing empty lines
+com! DeleteEmptyLines g/^$/d
+
+
 " Map directory listing
 map <silent><F2> :sp %:h<CR>
 
@@ -418,7 +424,12 @@ nmap ,te :tabedit <C-R>=getcwd() . "/" . split(getcwd(), "/")[-1] . "/" . substi
 
 " Toggle linting enabledness.
 nmap <silent> <F3> :ALEToggle<CR>
-" nmap <silent> <F4> :SyntasticToggleMode<CR>
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+
+
+" Black related mappings.
+nnoremap <F4> :Black<CR>
 
 
 " Convert camelCase to under_score
