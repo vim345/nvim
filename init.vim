@@ -49,7 +49,7 @@ set smartcase       " Do smart case matching
 set incsearch       " Incremental search
 set autowrite       " Automatically save before commands like :next and :make
 set hidden          " Hide buffers when they are abandoned
-set mouse=a         " Enable mouse usage (all modes)
+set mouse=r         " Disable mouse usage (all modes)
 set ruler           " Add ruler to status bar.
 set tabpagemax=30   " Max number of open tabs.
 "
@@ -445,7 +445,7 @@ nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
 
 
 " Fix files with isort.
-let b:ale_fixers = ['autopep8']
+let b:ale_fixers = ['black']
 " Enable quickfix in ALE.
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
