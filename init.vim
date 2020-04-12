@@ -14,11 +14,7 @@ Plug 'w0rp/ale'
 Plug 'derekwyatt/vim-scala'
 Plug 'psf/black'
 call plug#end()
-
-
-" Set Python version to py3:
-let g:python3_host_prog = '/nail/home/mohm/py3/bin/python3'
-
+"
 " Enable 256 color schema in vimdiff.
 set t_Co=256
 
@@ -53,7 +49,7 @@ set smartcase       " Do smart case matching
 set incsearch       " Incremental search
 set autowrite       " Automatically save before commands like :next and :make
 set hidden          " Hide buffers when they are abandoned
-set mouse=r         " Disable mouse usage (all modes)
+set mouse=a         " Enable mouse usage (all modes)
 set ruler           " Add ruler to status bar.
 set tabpagemax=30   " Max number of open tabs.
 "
@@ -449,7 +445,7 @@ nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
 
 
 " Fix files with isort.
-let b:ale_fixers = ['black']
+let b:ale_fixers = ['autopep8']
 " Enable quickfix in ALE.
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
