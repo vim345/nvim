@@ -14,7 +14,12 @@ Plug 'w0rp/ale'
 Plug 'derekwyatt/vim-scala'
 Plug 'psf/black'
 call plug#end()
-"
+
+
+" Use this python virtualenv for nvim
+let g:python3_host_prog='~/virtual_env/py3/bin/python'
+
+
 " Enable 256 color schema in vimdiff.
 set t_Co=256
 
@@ -68,6 +73,8 @@ if has("autocmd")
   autocmd Filetype scss setlocal ts=2 sw=2 sts=0
   autocmd Filetype html setlocal ts=2 sw=2 sts=0
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType javascript setlocal ts=2 ts=2 sw=2
+  autocmd FileType vue setlocal ts=2 ts=2 sw=2
 endif
 
 
@@ -429,7 +436,7 @@ nmap <silent> <leader>ak :ALEPrevious<cr>
 
 
 " Black related mappings.
-nnoremap <F4> :Black<CR>
+autocmd FileType py nnoremap <F4> :Black<CR>
 
 
 " Convert camelCase to under_score
@@ -445,10 +452,22 @@ nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
 
 
 " Fix files with isort.
-let b:ale_fixers = ['black']
+" autocmd FileType py let b:ale_fixers = ['black']
+let b:ale_fixers = {'javascript': [ 'prettier', 'eslint'], 'python': ['black']}
+let b:ale_linters = {'go': [ 'gobuild', 'gopls']}
+
+
 " Enable quickfix in ALE.
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_save = 1
+let g:ale_completion_enabled = 1
+
+let g:go_fmt_fail_silently = 1
+let g:go_auto_type_info = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 
 
 xmap <F7> y:call SendViaOSC52(getreg('"'))<cr>
@@ -469,3 +488,4 @@ function! OscCopy()
   redraw!
 endfunction
 command! OscCopy :call OscCopy()
+
