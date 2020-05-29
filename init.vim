@@ -12,7 +12,7 @@ Plug 'blueyed/vim-diminactive'
 Plug 'pangloss/vim-javascript'
 Plug 'w0rp/ale'
 Plug 'derekwyatt/vim-scala'
-Plug 'psf/black'
+Plug 'psf/black', {'tag': '19.10b0'}
 call plug#end()
 
 
@@ -318,6 +318,9 @@ let g:argwrap_tail_comma = 1
 
  " Color scheme.
 colorscheme mohammad
+if &diff
+    colorscheme mohammad
+endif
 
 
 " Set Abbreviation

@@ -48,9 +48,9 @@ hi Statement  cterm=bold ctermfg=Blue	     gui=bold guifg=blue
 hi Type	      cterm=NONE ctermfg=Blue	     gui=bold guifg=blue
 
 " Vim diff
-highlight DiffAdd    cterm=bold ctermfg=Black ctermbg=Green gui=none guifg=Black guibg=Green
-highlight DiffDelete cterm=bold ctermfg=Black ctermbg=LightRed gui=none guifg=Black guibg=Red
-highlight DiffChange cterm=bold ctermfg=Black ctermbg=LightGreen gui=none guifg=Black guibg=Green
-highlight DiffText   cterm=bold ctermfg=Black ctermbg=Yellow gui=none guifg=Black guibg=Red
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 " vim: sw=2
