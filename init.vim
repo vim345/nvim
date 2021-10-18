@@ -452,6 +452,8 @@ let g:fzf_nvim_statusline = 0
 nmap <C-P> :Files<CR>
 " Only show files that are in the same directory.
 nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
+" Find directory path
+imap <C-x><C-p> <plug>(fzf-complete-path)
 
 
 " Fix files with isort.
