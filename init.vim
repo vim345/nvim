@@ -274,7 +274,7 @@ set wildignore+=*/playground/*     " Files in playground.
 " press F10 to open the buffer menu
 set wildcharm=<C-Z>
 nnoremap <F10> :b <C-Z>
-nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap <F5> :Buffers <cr>
 
 
 " Disable powerline
