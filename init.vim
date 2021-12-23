@@ -330,8 +330,8 @@ endif
 
 
 " Maping shortcut keys to tab switching
-map <silent><C-S-l> :tabnext<CR>
-map <silent><C-s-h> :tabprevious<CR>
+map <silent><C-l> :tabnext<CR>
+map <silent><C-h> :tabprevious<CR>
 
 
 " Erasing trailing whitespace
