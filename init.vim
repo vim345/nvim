@@ -439,7 +439,8 @@ nmap <silent> <leader>ak :ALEPrevious<cr>
 
 
 " Black related mappings.
-autocmd FileType py nnoremap <F4> :Black<CR>
+" autocmd FileType py nnoremap <F4> :Black<CR>
+nnoremap <F4> :Black<CR>
 
 
 " Convert camelCase to under_score
@@ -459,7 +460,8 @@ imap <C-x><C-p> <plug>(fzf-complete-path)
 " Fix files with isort.
 " autocmd FileType py let b:ale_fixers = ['black']
 let b:ale_fixers = {'javascript': [ 'prettier', 'eslint'], 'python': ['black']}
-let b:ale_linters = {'go': [ 'gobuild', 'gopls']}
+let b:ale_linters = {'go': [ 'gobuild', 'gopls'], 'python': ['flake8', 'pylint'] }
+let b:ale_linters_ignore = {'python': ['mypy'] }
 
 
 " Enable quickfix in ALE.
