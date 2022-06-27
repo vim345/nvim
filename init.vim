@@ -405,6 +405,9 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 " Open the Go Tag bar.
 nmap <F8> :TagbarToggle<CR>
 
+# Show git commit history for the current file.
+nmap <leader>l :Gclog -- %<CR>
+
 " Jump between errors in quickfix list.
 map <leader>n :cnext<CR>
 map <leader>m :cprevious<CR>
@@ -459,9 +462,9 @@ imap <C-x><C-p> <plug>(fzf-complete-path)
 
 " Fix files with isort.
 " autocmd FileType py let b:ale_fixers = ['black']
-let b:ale_fixers = {'javascript': [ 'prettier', 'eslint'], 'python': ['black']}
-let b:ale_linters = {'go': [ 'gobuild', 'gopls'], 'python': ['flake8', 'pylint'] }
-let b:ale_linters_ignore = {'python': ['mypy'] }
+let g:ale_fixers = {'javascript': [ 'prettier', 'eslint'], 'python': ['black']}
+let g:ale_linters = {'go': [ 'gobuild', 'gopls'], 'python': ['flake8', 'pylint'] }
+let g:ale_linters_ignore = {'python': ['mypy'] }
 
 
 " Enable quickfix in ALE.
