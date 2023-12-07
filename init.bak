@@ -13,6 +13,13 @@ Plug 'pangloss/vim-javascript'
 Plug 'w0rp/ale'
 Plug 'derekwyatt/vim-scala'
 Plug 'psf/black', {'tag': '19.10b0'}
+Plug 'williamboman/mason.nvim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'jay-babu/mason-nvim-dap.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'rcarriga/nvim-notify'
+Plug 'leoluz/nvim-dap-go'
 call plug#end()
 
 
@@ -405,7 +412,7 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 " Open the Go Tag bar.
 nmap <F8> :TagbarToggle<CR>
 
-# Show git commit history for the current file.
+" Show git commit history for the current file.
 nmap <leader>l :Gclog -- %<CR>
 
 " Jump between errors in quickfix list.
@@ -499,3 +506,11 @@ function! OscCopy()
 endfunction
 command! OscCopy :call OscCopy()
 
+" Only display variable and stacktrace windows during debugginglet g:go_debug_windows = {
+let g:go_debug_windows = {
+      \ 'vars':       'rightbelow 60vnew',
+      \ 'stack':      'rightbelow 10new',
+\ }
+
+" Configure delve debugging
+source ~/.config/nvim/dap.lua
