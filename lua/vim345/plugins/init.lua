@@ -1,0 +1,3 @@
+return {
+  'blueyed/vim-diminactive',
+}

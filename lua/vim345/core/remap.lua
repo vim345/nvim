@@ -12,3 +12,7 @@ vim.keymap.set("n", "<C-h>", ":tabprevious<CR>", { silent = true })
 
 -- Clean highlights with Ctrl+n
 vim.keymap.set("n", "<C-N>", ":silent noh<CR>", { silent = true} )
+
+-- Mappings for diff
+vim.keymap.set("n", "<leader>d", ":windo diffthis<CR>")
+vim.keymap.set("n", "<leader>o", ":windo diffoff<CR>")
