@@ -163,5 +163,29 @@ return {
 				},
 			},
 		})
+		--
+		-- configure yaml server
+		lspconfig["yamlls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- configure json server
+		lspconfig["jsonls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- configure bash server
+		lspconfig["bashls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- configure puppet server
+		lspconfig["puppet"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
 	end,
 }
