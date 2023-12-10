@@ -6,6 +6,7 @@ return {
 	{
 		"leoluz/nvim-dap-go",
 		lazy = false,
+		ft = "go",
 		dependencies = {
 			"mfussenegger/nvim-dap",
 			"rcarriga/nvim-notify",
