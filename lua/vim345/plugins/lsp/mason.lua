@@ -32,7 +32,7 @@ return {
 				"tailwindcss",
 				"lua_ls",
 				"emmet_ls",
-				"pyright",
+				"pylsp",
 				"gopls",
 				"yamlls",
 				"jsonls",

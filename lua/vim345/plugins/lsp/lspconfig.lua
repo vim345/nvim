@@ -15,7 +15,7 @@ return {
 		local keymap = vim.keymap -- for conciseness
 
 		local opts = { noremap = true, silent = true }
-		local on_attach = function(client, bufnr)
+		local on_attach = function(_, bufnr)
 			opts.buffer = bufnr
 
 			-- set keybinds
@@ -96,9 +96,10 @@ return {
 		})
 
 		-- configure python server
-		lspconfig["pyright"].setup({
+		lspconfig["pylsp"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			filetypes = { "py" },
 		})
 
 		-- configure lua server (with special settings)
