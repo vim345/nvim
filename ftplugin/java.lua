@@ -1,30 +1,47 @@
 local jdtls = require("jdtls")
+local home = os.getenv("HOME")
 
 local bundles = {
 	vim.fn.glob(
-		"/home/mohi/apps/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+		home .. "/.config/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
 		1
 	),
 }
-vim.list_extend(bundles, vim.split(vim.fn.glob("/home/mohi/apps/vscode-java-test/server/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/vscode-java-test/server/*.jar", 1), "\n"))
 
-local function enable_debugger(bufnr)
-	require("jdtls").setup_dap({ hotcodereplace = "auto" })
-	require("jdtls.dap").setup_dap_main_class_configs()
-
-	local opts = { buffer = bufnr }
-	vim.keymap.set("n", "<leader>dnc", "<cmd>lua require('jdtls').test_class()<cr>", opts)
-	vim.keymap.set("n", "<leader>dnt", "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
-end
-
-local function jdtls_on_attach(_, bufnr)
-	enable_debugger(bufnr)
-end
+local java = {
+	{
+		type = "java",
+		name = "Debug",
+		request = "launch",
+		program = "${file}",
+	},
+	{
+		type = "java",
+		name = "Debug test ",
+		request = "launch",
+		mode = "test",
+		program = "./${relativeFileDirname}",
+	},
+	{
+		type = "java",
+		name = "Attach (Pick Process)",
+		mode = "local",
+		request = "attach",
+		processId = require("dap.utils").pick_process,
+	},
+	{
+		type = "java",
+		name = "Attach (127.0.0.1:9090)",
+		mode = "remote",
+		request = "attach",
+		port = "9080",
+	},
+}
 
 local config = {
 	-- The command that starts the language server
 	-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-	on_attach = jdtls_on_attach,
 	cmd = {
 
 		-- 💀
@@ -45,14 +62,14 @@ local config = {
 
 		-- 💀
 		"-jar",
-		"/home/mohi/apps/jdtls/plugins/org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar",
+		home .. "/.config/jdtls/plugins/org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar",
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
 		-- Must point to the                                                     Change this to
 		-- eclipse.jdt.ls installation                                           the actual version
 
 		-- 💀
 		"-configuration",
-		"/home/mohi/apps/jdtls/config_linux",
+		home .. "/.config/jdtls/config_linux",
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
 		-- Must point to the                      Change to one of `linux`, `win` or `mac`
 		-- eclipse.jdt.ls installation            Depending on your system.
@@ -60,7 +77,7 @@ local config = {
 		-- 💀
 		-- See `data directory configuration` section in the README
 		"-data",
-		"/home/mohi/apps/jdtls/data",
+		home .. "/.config/jdtls/data",
 	},
 
 	-- 💀
@@ -106,7 +123,6 @@ dap.configurations.java = {
 		-- If using the JDK9+ module system, this needs to be extended
 		-- `nvim-jdtls` would automatically populate this property
 		-- modulePaths = {},
-		-- name = "Launch YourClassName",
 		request = "launch",
 		type = "java",
 	},

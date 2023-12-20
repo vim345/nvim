@@ -1,7 +1,7 @@
 local keymap = vim.keymap -- for conciseness
 
 local opts = { noremap = true, silent = true }
-local on_attach = function(_, bufnr)
+on_attach = function(_, bufnr)
 	opts.buffer = bufnr
 
 	-- set keybinds
@@ -45,12 +45,6 @@ local on_attach = function(_, bufnr)
 	keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 end
 return {
-	{
-		"mfussenegger/nvim-jdtls",
-		config = function()
-			on_attach()
-		end,
-	},
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
