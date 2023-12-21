@@ -1,4 +1,5 @@
 local keymap = vim.keymap -- for conciseness
+local home = os.getenv("HOME")
 
 local opts = { noremap = true, silent = true }
 on_attach = function(_, bufnr)
@@ -44,6 +45,7 @@ on_attach = function(_, bufnr)
 	opts.desc = "Restart LSP"
 	keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 end
+
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
@@ -98,7 +100,8 @@ return {
 		lspconfig["pylsp"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			filetypes = { "py" },
+			filetypes = { "python" },
+			cmd = { home .. "/.config/py/bin/pyls" },
 		})
 
 		-- configure lua server (with special settings)
