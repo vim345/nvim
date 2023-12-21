@@ -42,7 +42,7 @@ setupJavaDebug ()
 
 setupVscodeJavaTest ()
 {
-    git clo"e https://github.com/microsoft/vscode-java-test.git $DEFAULT_PATH/vscode-java-test &&
+    git cloe https://github.com/microsoft/vscode-java-test.git $DEFAULT_PATH/vscode-java-test &&
         cd $DEFAULT_PATH/vscode-java-test
     npm install
     npm run build-plugin
