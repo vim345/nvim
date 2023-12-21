@@ -14,7 +14,7 @@ vim.opt.smartcase = true -- Do smart case matching
 vim.opt.incsearch = true -- Incremental search
 vim.opt.autowrite = true -- Automatically save before commands like :next and :make
 vim.opt.hidden = true -- Hide buffers when they are abandoned
-vim.opt.mouse = r -- Disable mouse usage (all modes)
+vim.opt.mouse = "r" -- Disable mouse usage (all modes)
 vim.opt.ruler = true -- Add ruler to status bar.
 vim.opt.tabpagemax = 30 -- Max number of open tabs.
 

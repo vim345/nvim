@@ -14,6 +14,7 @@ end
 
 return {
 	"mfussenegger/nvim-jdtls",
+	lazy = false,
 	config = function()
 		jdtls_on_attach()
 	end,
