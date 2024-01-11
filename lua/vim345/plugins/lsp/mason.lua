@@ -28,14 +28,14 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"html",
-				"cssls",
-				"tailwindcss",
+				-- "cssls",
+				-- "tailwindcss",
 				"lua_ls",
-				"emmet_ls",
+				-- "emmet_ls",
 				"gopls",
 				"yamlls",
 				"jsonls",
-				"bashls",
+				-- "bashls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -48,7 +48,7 @@ return {
 				"isort", -- python formatter
 				"black", -- python formatter
 				"pylint", -- python linter
-				"eslint_d", -- js linter
+				-- "eslint_d", -- js linter
 				"jsonls", -- json linter
 			},
 		})
