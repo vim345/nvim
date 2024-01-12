@@ -5,7 +5,7 @@
 HOME_DIR=$(realpath ~)
 export DEFAULT_PATH="$HOME_DIR/.config"
 
-# Setup Python LSP
+# Setup Python LSP, if pyright is not enabled.
 setupPython ()
 {
     # Check if Python is available.
@@ -49,7 +49,7 @@ setupVscodeJavaTest ()
 }
 
 
-setupPython
+# setupPython
 # setupJDTLS
 # setupJavaDebug
 # setupVscodeJavaTest

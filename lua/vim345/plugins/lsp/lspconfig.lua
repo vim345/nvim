@@ -96,14 +96,6 @@ return {
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 		})
 
-		-- configure python server
-		lspconfig["pylsp"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = { "python" },
-			cmd = { home .. "/.config/py/bin/pyls" },
-		})
-
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
@@ -187,6 +179,12 @@ return {
 
 		-- configure puppet server
 		lspconfig["puppet"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- configure pyright
+		lspconfig["pyright"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})

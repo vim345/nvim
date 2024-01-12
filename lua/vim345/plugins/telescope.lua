@@ -31,8 +31,26 @@ return {
 
 		keymap.set("n", "<F4>", builtin.buffers, { desc = "Fuzzy find open buffers" })
 		keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
+		keymap.set(
+			"n",
+			"<leader>fg",
+			builtin.git_files,
+			{ desc = "Fuzzy search through the output of git ls-files command, respects .gitignore" }
+		)
 		keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Fuzzy find recent files" })
 		keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in cwd" })
+		keymap.set(
+			"n",
+			"<leader>fh",
+			builtin.command_history,
+			{ desc = "Lists commands that were executed recently, and reruns them on <cr>" }
+		)
+		keymap.set(
+			"n",
+			"<leader>fhs",
+			builtin.search_history,
+			{ desc = "Lists searches that were executed recently, and reruns them on <cr>" }
+		)
 		keymap.set(
 			"n",
 			"<leader>fsb",
