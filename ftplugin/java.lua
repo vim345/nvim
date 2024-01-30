@@ -1,5 +1,10 @@
 local jdtls = require("jdtls")
 local home = os.getenv("HOME")
+local ostype = os.getenv("OSTYPE")
+local jdtls_config = "/.config/jdtls/config_linux"
+if ostype ~= "linux-gnu" then
+	jdtls_config = "/.config/jdtls/config_mac_arm"
+end
 
 local bundles = {
 	vim.fn.glob(
@@ -62,14 +67,14 @@ local config = {
 
 		-- 💀
 		"-jar",
-		home .. "/.config/jdtls/plugins/org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar",
+		home .. "/.config/jdtls/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar",
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
 		-- Must point to the                                                     Change this to
 		-- eclipse.jdt.ls installation                                           the actual version
 
 		-- 💀
 		"-configuration",
-		home .. "/.config/jdtls/config_linux",
+		home .. jdtls_config,
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
 		-- Must point to the                      Change to one of `linux`, `win` or `mac`
 		-- eclipse.jdt.ls installation            Depending on your system.

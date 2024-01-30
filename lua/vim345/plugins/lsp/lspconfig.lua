@@ -162,12 +162,14 @@ return {
 		-- configure yaml server
 		lspconfig["yamlls"].setup({
 			capabilities = capabilities,
+			autoformat = false,
 			on_attach = on_attach,
 		})
 
 		-- configure json server
 		lspconfig["jsonls"].setup({
 			capabilities = capabilities,
+			autoformat = false,
 			on_attach = on_attach,
 		})
 
