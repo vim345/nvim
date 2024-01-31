@@ -13,10 +13,11 @@ setupPython ()
     then
         # Devbox doesn't have a default python. So manually pick the highest one.
         virtualenv --python="/usr/bin/python3.10" "$DEFAULT_PATH/py"
-        $DEFAULT_PATH/py/bin/pip3 install python-language-server debugpy pylint black
+        # $DEFAULT_PATH/py/bin/pip3 install python-language-server debugpy pylint black pyright
+        $DEFAULT_PATH/py/bin/pip install python-language-server debugpy pylint black pyright pynvim
     else
         virtualenv "$DEFAULT_PATH/py"
-        $DEFAULT_PATH/py/bin/pip install python-language-server debugpy pylint black
+        $DEFAULT_PATH/py/bin/pip3 install pylint black pyright pynvim
     fi
 
 }
@@ -28,7 +29,7 @@ setupJDTLS ()
     mkdir $DEFAULT_PATH/jdtls
     cd $DEFAULT_PATH/jdtls
     wget https://www.eclipse.org/downloads/download.php?file=/jdtls/snapshots/jdt-language-server-latest.tar.gz &&
-        tar -xzvf download.php\?file=%2Fjdtls%2Fsnapshots%2Fjdt-language-server-latest.tar.gz &&
+        tar -xzvf download.php\?file=%2Fjdtls%2Fsnapshots%2Fjdt-language-server-latest.tar.gz
         rm -rf download.php\?file=%2Fjdtls%2Fsnapshots%2Fjdt-language-server-latest.tar.gz &&
         mkdir data
 }

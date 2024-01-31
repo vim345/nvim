@@ -91,3 +91,5 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 		end
 	end,
 })
+
+vim.g.python3_host_prog = "~/.config/py/bin/python3"

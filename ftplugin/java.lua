@@ -6,6 +6,20 @@ if ostype ~= "linux-gnu" then
 	jdtls_config = "/.config/jdtls/config_mac_arm"
 end
 
+local launcher = ""
+local handle = io.popen("ls ~/.config/jdtls/plugins | grep 'org.eclipse.equinox.launcher_'")
+if handle ~= nil then
+	launcher = string.gsub(handle:read("*a"), "\n", "")
+end
+
+local launcher_path = home .. "/.config/jdtls/plugins/" .. launcher
+
+local function getDataDirectory()
+	local jdtls_data = home .. "/.config/jdtls/data/"
+	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+	return jdtls_data .. project_name
+end
+
 local bundles = {
 	vim.fn.glob(
 		home .. "/.config/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
@@ -67,7 +81,7 @@ local config = {
 
 		-- 💀
 		"-jar",
-		home .. "/.config/jdtls/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar",
+		launcher_path,
 		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
 		-- Must point to the                                                     Change this to
 		-- eclipse.jdt.ls installation                                           the actual version
@@ -82,7 +96,8 @@ local config = {
 		-- 💀
 		-- See `data directory configuration` section in the README
 		"-data",
-		home .. "/.config/jdtls/data",
+		-- home .. "/.config/jdtls/data",
+		getDataDirectory(),
 	},
 
 	-- 💀
