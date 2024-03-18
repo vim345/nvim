@@ -5,10 +5,8 @@
 HOME_DIR=$(realpath ~)
 export DEFAULT_PATH="$HOME_DIR/.config"
 
-# Setup Python LSP, if pyright is not enabled.
 setupPython ()
 {
-    # Check if Python is available.
     if ! command -v python &> /dev/null
     then
         # Devbox doesn't have a default python. So manually pick the highest one.

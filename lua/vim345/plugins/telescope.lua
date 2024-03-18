@@ -41,6 +41,12 @@ return {
 		keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in cwd" })
 		keymap.set(
 			"n",
+			"<leader>fq",
+			builtin.resume,
+			{ desc = "Lists the results incl. multi-selections of the previous picker" }
+		)
+		keymap.set(
+			"n",
 			"<leader>fh",
 			builtin.command_history,
 			{ desc = "Lists commands that were executed recently, and reruns them on <cr>" }

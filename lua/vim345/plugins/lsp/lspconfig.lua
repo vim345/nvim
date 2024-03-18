@@ -185,18 +185,18 @@ return {
 			on_attach = on_attach,
 		})
 
-		lspconfig["pylsp"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = { "python" },
-			cmd = { home .. "/.config/py/bin/pyls" },
-		})
-
-		-- configure pyright
-		-- lspconfig["pyright"].setup({
+		-- lspconfig["pylsp"].setup({
 		-- 	capabilities = capabilities,
 		-- 	on_attach = on_attach,
-		-- 	cmd = { home .. "/.config/py/bin/pyright-langserver" },
+		-- 	filetypes = { "python" },
+		-- 	cmd = { home .. "/.config/py/bin/pyls" },
 		-- })
+
+		-- configure pyright
+		lspconfig["pyright"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			cmd = { home .. "/.config/py/bin/pyright-langserver", "--stdio" },
+		})
 	end,
 }
