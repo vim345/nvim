@@ -103,6 +103,14 @@ return {
 			dap_common()
 			local dap_python = require("dap-python")
 			dap_python.setup(home .. "/.config/py/bin/python")
+			-- TOOD: Add python testing.
+			-- table.insert(require("dap").configurations.python, {
+			-- 	type = "python",
+			-- 	name = "Debug test",
+			-- 	request = "launch",
+			-- 	mode = "test",
+			-- 	program = "./${relativeFileDirname}",
+			-- })
 		end,
 	},
 	{
