@@ -11,3 +11,5 @@ vim.keymap.set("n", "<C-N>", ":silent noh<CR>", { silent = true })
 -- Mappings for diff
 vim.keymap.set("n", "<leader>d", ":windo diffthis<CR>")
 vim.keymap.set("n", "<leader>o", ":windo diffoff<CR>")
+
+-- vim.cmd("abbrev pdb import pdb;")
