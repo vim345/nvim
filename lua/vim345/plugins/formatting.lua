@@ -22,16 +22,16 @@ return {
 				python = { "isort", "black" },
 			},
 			format_on_save = function(bufnr)
-        local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
-        if filetype == "json" or filetype == "yaml" then
-          return
-        end
-        return {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 1000,
-        }
-      end,
+				local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+				if filetype == "json" or filetype == "yaml" then
+					return
+				end
+				return {
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 1000,
+				}
+			end,
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
