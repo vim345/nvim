@@ -53,6 +53,13 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
+	opts = {
+		setup = {
+			rust_analyzer = function()
+				return true
+			end,
+		},
+	},
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
