@@ -10,7 +10,8 @@ setupPython ()
     if ! command -v python &> /dev/null
     then
         # Devbox doesn't have a default python. So manually pick the highest one.
-        virtualenv --python="/usr/bin/python3.10" "$DEFAULT_PATH/py"
+        virtualenv --python="/usr/local/bin/python3.10" "$DEFAULT_PATH/py"
+        # virtualenv --python="/usr/bin/python3.10" "$DEFAULT_PATH/py"
         # $DEFAULT_PATH/py/bin/pip3 install python-language-server debugpy pylint black pyright
         $DEFAULT_PATH/py/bin/pip install python-language-server debugpy pylint black pyright pynvim
     else
@@ -48,7 +49,7 @@ setupVscodeJavaTest ()
 }
 
 
-# setupPython
+setupPython
 # setupJDTLS
 # setupJavaDebug
 # setupVscodeJavaTest
