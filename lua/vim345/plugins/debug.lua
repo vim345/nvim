@@ -98,10 +98,29 @@ local dap_common = function()
 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
 		require("notify")("Debugger session ended", "warn")
 	end)
+
+	-- Eval var under cursor
+	vim.keymap.set("n", "<localleader>d?", function()
+		require("dapui").eval(nil, { enter = true })
+	end)
+
+	dap.listeners.before.attach.dapui_config = function()
+		ui.open()
+	end
+	dap.listeners.before.launch.dapui_config = function()
+		ui.open()
+	end
+	dap.listeners.before.event_terminated.dapui_config = function()
+		ui.close()
+	end
+	dap.listeners.before.event_exited.dapui_config = function()
+		ui.close()
+	end
 end
 return {
 	{
 		"mfussenegger/nvim-dap",
+		"theHamsta/nvim-dap-virtual-text",
 		lazy = false,
 	},
 	{

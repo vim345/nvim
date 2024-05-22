@@ -16,7 +16,7 @@ setupPython ()
         $DEFAULT_PATH/py/bin/pip install python-language-server debugpy pylint black pyright pynvim
     else
         virtualenv "$DEFAULT_PATH/py"
-        $DEFAULT_PATH/py/bin/pip3 install pylint black pyright pynvim
+        $DEFAULT_PATH/py/bin/pip3 install pylint black pyright pynvim debugpy
     fi
 
 }
