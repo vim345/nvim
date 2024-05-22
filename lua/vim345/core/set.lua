@@ -70,7 +70,7 @@ vim.opt.completeopt = "longest,menuone"
 vim.opt.backspace = "indent,eol,start"
 
 -- Toggle Paste Mode
-vim.opt.pastetoggle = "<F9>"
+-- vim.opt.pastetoggle = "<F9>"
 
 -- Jump to the last position
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
@@ -93,3 +93,8 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 })
 
 vim.g.python3_host_prog = "~/.config/py/bin/python3"
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*.java",
+	command = "!./gradlew :spotlessApply > /dev/null && ./gradlew :module-interfaces:spotlessJavaApply > /dev/null",
+})
