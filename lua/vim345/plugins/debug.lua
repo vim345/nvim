@@ -1,4 +1,5 @@
 local home = os.getenv("HOME")
+local keymap = vim.keymap -- for conciseness
 
 local function enable_debugger(bufnr)
 	require("jdtls").setup_dap({ hotcodereplace = "auto" })
@@ -136,14 +137,17 @@ return {
 			dap_common()
 			local dap_python = require("dap-python")
 			dap_python.setup(home .. "/.config/py/bin/python")
-			-- TOOD: Add python testing.
-			-- table.insert(require("dap").configurations.python, {
-			-- 	type = "python",
-			-- 	name = "Debug test",
-			-- 	request = "launch",
-			-- 	mode = "test",
-			-- 	program = "./${relativeFileDirname}",
-			-- })
+			keymap.set("n", "<leader>tc", function()
+				if vim.bo.filetype == "python" then
+					require("dap-python").test_class()
+				end
+			end)
+
+			keymap.set("n", "<leader>tm", function()
+				if vim.bo.filetype == "python" then
+					require("dap-python").test_method()
+				end
+			end)
 		end,
 	},
 	{
