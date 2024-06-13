@@ -46,7 +46,7 @@ end
 -- Map the function to a shortcut key, e.g., <Leader>p
 vim.api.nvim_set_keymap("n", "<\t>", ":lua toggle_regions(false)<CR>", { noremap = true, silent = true })
 
-function toggle_prod_file(vertical_split)
+function toggle_related(vertical_split)
 	-- Get the current file name and parent directory
 	local current_file = vim.fn.expand("%:t")
 	local current_dir = vim.fn.expand("%:p:h:t")
@@ -107,9 +107,9 @@ function toggle_prod_file(vertical_split)
 end
 
 opts.desc = "Open related file"
-keymap.set("n", "<leader>", toggle_prod_file, opts) -- smart rename
+keymap.set("n", "<leader>", toggle_related, opts)
 
 opts.desc = "Open related file in vertical split"
 keymap.set("n", "<leader>rv", function()
-	toggle_prod_file(true)
-end)
+	toggle_related(true)
+end, opts)
