@@ -78,25 +78,33 @@ function toggle_related(vertical_split)
 		-- Check if the current file contains -nova or -pnw and toggle
 		if current_file:find("-nova") then
 			new_file = current_file:gsub("-nova", "-pnw")
-			new_dir = current_dir
+			new_dir = vim.fn.expand("%:p:h")
 		elseif current_file:find("-pnw") then
 			new_file = current_file:gsub("-pnw", "-nova")
-			new_dir = current_dir
+			new_dir = vim.fn.expand("%:p:h")
 		else
-			-- If the file name doesn't contain -nova or -pnw, toggle the parent directory
-			local parent_dir = vim.fn.expand("%:p:h:h:t")
-			if parent_dir == "nova-prod" then
-				new_dir = current_dir:gsub("/nova-prod/", "/pnw-prod/")
-			elseif parent_dir == "pnw-prod" then
-				new_dir = current_dir:gsub("/pnw-prod/", "/nova-prod/")
+			if current_file:find("-nova") then
+				new_file = current_file:gsub("-nova", "-pnw")
+				new_dir = vim.fn.expand("%:p:h")
+			elseif current_file:find("-pnw") then
+				new_file = current_file:gsub("-pnw", "-nova")
+				new_dir = vim.fn.expand("%:p:h")
 			else
-				print("Current file is not in nova-prod or pnw-prod directory, and does not contain -nova or -pnw")
-				return
+				-- If the file name doesn't contain -nova or -pnw, toggle the parent directory
+				if current_dir == "nova-prod" then
+					new_dir = vim.fn.expand("%:p:h:h") .. "/pnw-prod"
+				elseif current_dir == "pnw-prod" then
+					new_dir = vim.fn.expand("%:p:h:h") .. "/nova-prod"
+				else
+					print("Current file is not in nova-prod or pnw-prod directory, and does not contain -nova or -pnw")
+					return
+				end
+				new_file = current_file
 			end
-			new_file = current_file
-			full_path = new_dir .. "/" .. new_file
 		end
 	end
+
+	full_path = new_dir .. "/" .. new_file
 
 	-- Open the new file, optionally in a vertical split
 	if vertical_split then
