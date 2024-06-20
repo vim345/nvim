@@ -115,7 +115,7 @@ function toggle_related(vertical_split)
 end
 
 opts.desc = "Open related file"
-keymap.set("n", "<leader>", toggle_related, opts)
+keymap.set("n", "<leader>r", toggle_related, opts)
 
 opts.desc = "Open related file in vertical split"
 keymap.set("n", "<leader>rv", function()
