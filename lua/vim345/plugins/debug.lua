@@ -132,6 +132,7 @@ return {
 			"mfussenegger/nvim-dap",
 			"rcarriga/nvim-notify",
 			"rcarriga/nvim-dap-ui",
+			"nvim-neotest/nvim-nio",
 		},
 		config = function()
 			dap_common()
