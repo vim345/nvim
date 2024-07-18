@@ -69,7 +69,7 @@ function toggle_related(vertical_split)
 				print("Current Java file is not in a recognized source or test directory")
 				return
 			end
-			full_path = new_dir:gsub(current_file, new_file)
+			full_path = new_dir:gsub(current_file, "") .. new_file
 		else
 			print("Current Java file is not in a recognized src directory")
 			return
@@ -102,9 +102,8 @@ function toggle_related(vertical_split)
 				new_file = current_file
 			end
 		end
+		full_path = new_dir .. "/" .. new_file
 	end
-
-	full_path = new_dir .. "/" .. new_file
 
 	-- Open the new file, optionally in a vertical split
 	if vertical_split then
