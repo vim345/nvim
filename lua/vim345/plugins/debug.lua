@@ -240,6 +240,18 @@ return {
 					args = { "dap", "-l", "127.0.0.1:${port}" },
 				},
 			}
+
+			keymap.set("n", "<leader>tm", function()
+				if vim.bo.filetype == "go" then
+					require("dap-go").debug_test()
+				end
+			end)
+
+			keymap.set("n", "<F6>", function()
+				if vim.bo.filetype == "go" then
+					require("dap-go").debug_last_test()
+				end
+			end)
 		end,
 	},
 	{
