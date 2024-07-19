@@ -1,6 +1,19 @@
 local home = os.getenv("HOME")
 local keymap = vim.keymap -- for conciseness
 
+local function ensure_debugpy_installed()
+	local handle = io.popen('python -c "import debugpy" 2>/dev/null && echo 1 || echo 0')
+	local result = handle:read("*a")
+	handle:close()
+
+	if result:match("0") then
+		print("debugpy not found, installing...")
+		os.execute("python -m pip install debugpy")
+	else
+		print("debugpy is already installed")
+	end
+end
+
 local function enable_debugger(bufnr)
 	require("jdtls").setup_dap({ hotcodereplace = "auto" })
 
@@ -105,6 +118,8 @@ local dap_common = function()
 		require("dapui").eval(nil, { enter = true })
 	end)
 
+	vim.api.nvim_set_keymap("n", "<F6>", '<Cmd>lua require"dap".run_last()<CR>', { noremap = true, silent = true })
+
 	dap.listeners.before.attach.dapui_config = function()
 		ui.open()
 	end
@@ -122,6 +137,7 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		"theHamsta/nvim-dap-virtual-text",
+		config = function() end,
 		lazy = false,
 	},
 	{
@@ -137,7 +153,10 @@ return {
 		config = function()
 			dap_common()
 			local dap_python = require("dap-python")
-			dap_python.setup(home .. "/.config/py/bin/python")
+			-- Ensure debugpy is installed in the current virtual environment
+			ensure_debugpy_installed()
+			dap_python.test_runner = "pytest"
+			dap_python.setup("python")
 			keymap.set("n", "<leader>tc", function()
 				if vim.bo.filetype == "python" then
 					require("dap-python").test_class()
@@ -147,6 +166,12 @@ return {
 			keymap.set("n", "<leader>tm", function()
 				if vim.bo.filetype == "python" then
 					require("dap-python").test_method()
+				end
+			end)
+
+			keymap.set("n", "<leader>ts", function()
+				if vim.bo.filetype == "python" then
+					require("dap-python").debug_selection()
 				end
 			end)
 		end,
