@@ -29,6 +29,9 @@ return {
 		local builtin = require("telescope.builtin")
 		local keymap = vim.keymap -- for conciseness
 
+		-- load refactoring Telescope extension
+		require("telescope").load_extension("refactoring")
+
 		keymap.set("n", "<F4>", builtin.buffers, { desc = "Fuzzy find open buffers" })
 		keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
 		keymap.set(
@@ -76,5 +79,9 @@ return {
 			builtin.git_bcommits,
 			{ desc = "Lists commits for current buffer with diff preview" }
 		)
+
+		keymap.set({ "n", "x" }, "<leader>rr", function()
+			require("telescope").extensions.refactoring.refactors()
+		end)
 	end,
 }
