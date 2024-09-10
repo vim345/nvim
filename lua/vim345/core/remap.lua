@@ -120,3 +120,6 @@ opts.desc = "Open related file in vertical split"
 keymap.set("n", "<leader>rv", function()
 	toggle_related(true)
 end, opts)
+
+-- Show the full path of the current file
+vim.api.nvim_set_keymap("n", "<leader>p", [[:lua print(vim.fn.expand('%:p'))<CR>]], { noremap = true, silent = true })

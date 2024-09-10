@@ -19,7 +19,7 @@ return {
 				markdown = { "prettier" },
 				graphql = { "prettier" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "black", "isort" },
 			},
 			format_on_save = function(bufnr)
 				local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")

@@ -92,7 +92,27 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	end,
 })
 
-vim.g.python3_host_prog = "~/.config/py/bin/python3"
+-- Set the python virtualenv based on the current directory
+local function get_env(env)
+	local venv_path = vim.fn.finddir(env, ".;")
+	if venv_path ~= "" then
+		vim.g.python3_host_prog = venv_path .. "/bin/python3"
+		return true
+	end
+	return false
+end
+
+local function set_python_host_prog()
+	local envs = { "venv", "virtualenv_run" }
+
+	for _, env in ipairs(envs) do
+		if get_env(env) then
+			break
+		end
+	end
+end
+
+set_python_host_prog()
 
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*.java",
