@@ -116,5 +116,5 @@ set_python_host_prog()
 
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*.java",
-	command = "!./gradlew :spotlessApply > /dev/null && ./gradlew :module-interfaces:spotlessJavaApply > /dev/null",
+	command = "!./gradlew spotlessApply > /dev/null",
 })
