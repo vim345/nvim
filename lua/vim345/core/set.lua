@@ -103,7 +103,7 @@ local function get_env(env)
 end
 
 local function set_python_host_prog()
-	local envs = { "venv", "virtualenv_run" }
+	local envs = { "venv", "docker-venv", "virtualenv_run" }
 
 	for _, env in ipairs(envs) do
 		if get_env(env) then
