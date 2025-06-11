@@ -5,6 +5,7 @@ return {
 	opts = {
 		-- add any opts here
 		-- for example
+		provider = "openai",
 		providers = {
 			openai = {
 				endpoint = os.getenv("OPEN_API_ENDPOINT"),
