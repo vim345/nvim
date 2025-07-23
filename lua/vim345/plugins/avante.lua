@@ -1,12 +1,8 @@
-return {
-	"yetone/avante.nvim",
-	event = "VeryLazy",
-	version = false, -- Never set this value to "*"! Never!
-	opts = {
-		-- add any opts here
-		-- for example
-		provider = "openai",
-		providers = {
+local work = vim.env.WORK or ""
+
+local function getProviders()
+	if work == "1" then
+		return {
 			openai = {
 				endpoint = os.getenv("OPEN_API_ENDPOINT"),
 				api_key_name = "OPEN_API_KEY",
@@ -18,7 +14,25 @@ return {
 					--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
 				},
 			},
-		},
+		}
+	else
+		return {}
+	end
+end
+
+local function getDefaultProvider()
+	return (work == "1") and "openai" or "gemini"
+end
+
+return {
+	"yetone/avante.nvim",
+	event = "VeryLazy",
+	version = false, -- Never set this value to "*"! Never!
+	opts = {
+		-- add any opts here
+		-- for example
+		provider = getDefaultProvider(),
+		providers = getProviders(),
 		behaviour = {
 			auto_suggestions = false, -- Experimental stage
 			auto_set_highlight_group = true,

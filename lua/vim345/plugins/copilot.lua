@@ -1,5 +1,5 @@
 return {
-	{ "github/copilot.vim" },
+	{ "github/copilot.vim", disable = true },
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		branch = "main",
